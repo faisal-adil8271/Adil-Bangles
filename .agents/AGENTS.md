@@ -18,11 +18,18 @@ OpenCode uses a **skill-driven execution model** powered by the `skill` tool and
 - Skills are located in `skills/<skill-name>/SKILL.md`
 - Never implement directly if a skill applies
 - Always follow the skill instructions exactly (do not partially apply them)
+- **Always-On Baseline Skills (Auto-run on every task start):**
+  - **`graphify`**: Always map codebase architecture, dependencies, and file relationships first. Treat codebase understanding as a knowledge graph to trace imports, callers, and impact before making changes.
+  - **`ponytail`**: Lazy Senior Developer mode is active by default. Write the smallest complete change that fully solves the task. Avoid over-engineering, bloat, unnecessary wrappers, and YAGNI violations. Deletion beats addition; use existing platform patterns.
+  - **`caveman`**: Terse, high-signal communication. Cut fluff, ceremonial greetings, and verbose filler while keeping 100% of technical facts, commands, and code precision intact.
 
 ### Intent → Skill Mapping
 
 The agent should automatically map user intent to skills:
 
+- Codebase exploration / architecture / relationships → `graphify`
+- Concise / clean implementation / anti-bloat → `ponytail`
+- Token-efficient / terse technical communication → `caveman`
 - Feature / new functionality → `spec-driven-development`, then `incremental-implementation`, `test-driven-development`
 - Planning / breakdown → `planning-and-task-breakdown`
 - Bug / failure / unexpected behavior → `debugging-and-error-recovery`
