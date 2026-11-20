@@ -16,7 +16,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        await login(identifier, password);
+        await login(identifier.trim(), password.trim());
         setLoading(false);
     };
 

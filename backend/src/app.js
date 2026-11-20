@@ -60,7 +60,13 @@ app.use(
             if (allowedOrigins.length === 0 || allowedOrigins.includes("*") || allowedOrigins.includes(origin)) {
                 return cb(null, true);
             }
-            if (process.env.NODE_ENV !== "production" && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+            try {
+                const url = new URL(origin);
+                if (url.hostname.endsWith(".vercel.app") || url.hostname.endsWith(".onrender.com")) {
+                    return cb(null, true);
+                }
+            } catch {}
+            if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
                 return cb(null, true);
             }
             return cb(new Error("Origin not allowed by CORS"));
